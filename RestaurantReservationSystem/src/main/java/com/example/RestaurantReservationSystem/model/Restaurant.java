@@ -12,16 +12,30 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
-    private String cuisine;
-    private double averageRating;
-    private int waitTime;
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+    @Column(nullable = false)
+    private String cuisine;
+
+    @Column(nullable = false)
+    private double averageRating;
+
+    @OneToMany(mappedBy = "restaurant")
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-    private List<RestaurantDetails> detailsList;
+    @Column(nullable = false)
+    private List<String> popularDishes;
 
-    // Getters and setters, constructors, and other methods
+    @Column(nullable = false)
+    private int waitTimeInMinutes;
+
+    @Column(nullable = false)
+    private int totalSeats;
+
+    @Column(nullable = false)
+    private int availableSeats;
+
+    // Getters, setters, and constructors
 }
+
