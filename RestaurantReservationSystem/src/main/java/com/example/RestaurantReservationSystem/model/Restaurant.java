@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,6 +16,11 @@ public class Restaurant {
     @Column(nullable = false)
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "city_id", nullable = false)
+    private City city;
+
+
     @Column(nullable = false)
     private String cuisine;
 
@@ -22,10 +28,10 @@ public class Restaurant {
     private double averageRating;
 
     @OneToMany(mappedBy = "restaurant")
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
 
     @Column(nullable = false)
-    private List<String> popularDishes;
+    private List<String> popularDishes = new ArrayList<>();
 
     @Column(nullable = false)
     private int waitTimeInMinutes;

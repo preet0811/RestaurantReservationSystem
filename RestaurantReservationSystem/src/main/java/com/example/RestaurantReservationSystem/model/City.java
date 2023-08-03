@@ -13,6 +13,11 @@ public class City {
     @Column(nullable = false)
     private String name;
 
+    public City(){}
+    public City(String name) {
+        this.name = name;
+    }
+
     // Getters, setters, and constructors
 }
 

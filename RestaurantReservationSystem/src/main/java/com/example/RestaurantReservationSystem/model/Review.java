@@ -19,6 +19,14 @@ public class Review {
     @Column(nullable = false)
     private int rating; // Rating out of 5 stars
 
+    public Review() {
+    }
+
+    // Constructor to deserialize JSON data
+    public Review(String reviewText, int rating) {
+        this.reviewText = reviewText;
+        this.rating = rating;
+    }
     // Getters, setters, and constructors
 }
 

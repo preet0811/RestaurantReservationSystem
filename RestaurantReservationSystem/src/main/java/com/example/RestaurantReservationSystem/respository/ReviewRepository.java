@@ -1,4 +1,8 @@
 package com.example.RestaurantReservationSystem.respository;
 
-public class ReviewRepository {
+import com.example.RestaurantReservationSystem.model.Review;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReviewRepository extends JpaRepository<Review,Long> {
 }
+
