@@ -23,17 +23,12 @@ public class RestaurantServiceimpl implements RestaurantService {
 
     @Override
     public List<Restaurant> getRestaurantsByCity(City city) {
-        return restaurantRepository.findByCity(city);
+        return null;
     }
 
     @Override
     public List<Restaurant> getRestaurantsByCuisine(String cuisine) {
-        return restaurantRepository.findByCuisine(cuisine);
-    }
-
-    @Override
-    public List<Restaurant> getTopRatedRestaurants() {
-        return restaurantRepository.findAllByOrderByAverageRatingDesc();
+        return null;
     }
 
     @Override
@@ -46,40 +41,4 @@ public class RestaurantServiceimpl implements RestaurantService {
         return restaurantRepository.save(restaurant);
     }
 
-    @Override
-    public void reserveSeats(Long restaurantId, int numSeats) throws NotEnoughSeatsException {
-        Restaurant restaurant = restaurantRepository.findById(restaurantId).orElse(null);
-        if (restaurant == null) {
-            throw new IllegalArgumentException("Restaurant not found with ID: " + restaurantId);
-        }
-
-        if (restaurant.getAvailableSeats() >= numSeats) {
-            int remainingSeats = restaurant.getAvailableSeats() - numSeats;
-            restaurant.setAvailableSeats(remainingSeats);
-            restaurantRepository.save(restaurant);
-        } else {
-            throw new NotEnoughSeatsException("Not enough available seats to reserve.");
-        }
-    }
-
-    @Override
-    public void giveReview(Long restaurantId, String reviewText, int rating) {
-        Restaurant restaurant = restaurantRepository.findById(restaurantId).orElse(null);
-        if (restaurant == null) {
-            throw new IllegalArgumentException("Restaurant not found with ID: " + restaurantId);
-        }
-
-        Review review = new Review();
-        review.setRestaurant(restaurant);
-        review.setReviewText(reviewText);
-        review.setRating(rating);
-
-        // Calculate new average rating
-        double currentAverageRating = restaurant.getAverageRating();
-        int numReviews = restaurant.getReviews().size();
-        double newAverageRating = ((currentAverageRating * numReviews) + rating) / (numReviews + 1);
-        restaurant.setAverageRating(newAverageRating);
-
-        restaurantRepository.save(restaurant);
-    }
 }
