@@ -11,4 +11,3 @@ public interface CityService {
 
     City createCity(City city);
 }
-

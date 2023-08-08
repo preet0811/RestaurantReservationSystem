@@ -20,4 +20,3 @@ public class City {
 
     // Getters, setters, and constructors
 }
-

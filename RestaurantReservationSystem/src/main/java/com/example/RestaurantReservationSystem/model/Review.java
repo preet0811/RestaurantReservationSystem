@@ -29,4 +29,3 @@ public class Review {
     }
     // Getters, setters, and constructors
 }
-

@@ -55,14 +55,11 @@ public class AdminController {
             return ResponseEntity.ok(restaurant);
         }
     }
+
     @GetMapping("/restaurants")
-    public ResponseEntity<Restaurant> getRestaurantByname(@PathVariable Long id) {
-        Restaurant restaurant = restaurantService.getRestaurantById(id);
-        if (restaurant == null) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(restaurant);
-        }
+    public ResponseEntity<List<String>> getAllRestaurantNames() {
+        List<String> restaurantNames = restaurantService.getAllRestaurantNames();
+        return ResponseEntity.ok(restaurantNames);
     }
     @RequestMapping("/restaurants")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -72,6 +69,3 @@ public class AdminController {
     }
 
 }
-
-
-
