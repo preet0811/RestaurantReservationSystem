@@ -13,6 +13,7 @@ public class RestaurantServiceimpl implements RestaurantService {
     @Autowired
     private final RestaurantRepository restaurantRepository;
 
+
     public RestaurantServiceimpl(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
     }
@@ -32,4 +33,8 @@ public class RestaurantServiceimpl implements RestaurantService {
         return restaurantRepository.getAllRestaurantNames();
     }
 
+    @Override
+    public List<Restaurant> getRestaurantsByCuisine(String cuisine) {
+        return restaurantRepository.findByCuisine(cuisine);
+    }
 }

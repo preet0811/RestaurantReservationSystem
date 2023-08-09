@@ -14,13 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admins")
-public class AdminController {
+public class AdminController<cuisine, CuisineResponse> {
     private final CityService cityService;
+
     private final RestaurantService restaurantService;
 
     public AdminController(CityService cityService, RestaurantService restaurantService) {
         this.cityService = cityService;
         this.restaurantService = restaurantService;
+
     }
 
     @GetMapping("/cities")
@@ -61,11 +63,20 @@ public class AdminController {
         List<String> restaurantNames = restaurantService.getAllRestaurantNames();
         return ResponseEntity.ok(restaurantNames);
     }
+
     @RequestMapping("/restaurants")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant restaurant) {
         Restaurant createdRestaurant = restaurantService.addRestaurant(restaurant);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRestaurant);
     }
+
+    @GetMapping("/cuisines/{cuisine}")
+    public ResponseEntity<List<Restaurant>> getRestaurantsByCuisine(@PathVariable String cuisine) {
+        // Logic to get restaurants by cuisine
+        List<Restaurant> restaurants = restaurantService.getRestaurantsByCuisine(cuisine);
+        return ResponseEntity.ok(restaurants);
+    }
+
 
 }
