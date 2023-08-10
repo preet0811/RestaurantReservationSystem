@@ -8,14 +8,15 @@ import lombok.Data;
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String city_name;
 
     public City(){}
     public City(String name) {
-        this.name = name;
+        this.city_name = name;
     }
 
     // Getters, setters, and constructors
