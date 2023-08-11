@@ -1,5 +1,6 @@
 package com.example.RestaurantReservationSystem.Service;
 
+import com.example.RestaurantReservationSystem.exception.RestaurantNotFoundException;
 import com.example.RestaurantReservationSystem.model.City;
 import com.example.RestaurantReservationSystem.model.Restaurant;
 
@@ -16,6 +17,12 @@ public interface RestaurantService {
     void deactivateRestaurant(Long restaurantId);
 
     void deleterestaurant(Long restaurantId);
+
+    Restaurant modifyRestaurantDetails(Long restaurantId, Restaurant modifiedRestaurant) throws RestaurantNotFoundException;
+
+
+
+
 
 
 

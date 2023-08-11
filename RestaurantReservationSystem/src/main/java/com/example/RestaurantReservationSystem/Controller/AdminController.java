@@ -3,16 +3,18 @@ package com.example.RestaurantReservationSystem.Controller;
 import com.example.RestaurantReservationSystem.Service.CityService;
 //import com.example.RestaurantReservationSystem.Service.RestaurantService;
 import com.example.RestaurantReservationSystem.Service.RestaurantService;
+import com.example.RestaurantReservationSystem.exception.RestaurantNotFoundException;
 import com.example.RestaurantReservationSystem.model.City;
 import com.example.RestaurantReservationSystem.model.Restaurant;
 import jakarta.transaction.Transactional;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Data
 @RestController
 @RequestMapping("/admins")
 public class AdminController<cuisine, CuisineResponse> {
@@ -90,4 +92,27 @@ public class AdminController<cuisine, CuisineResponse> {
         restaurantService.deleterestaurant(restaurantId);
         return ResponseEntity.ok("Restaurant deleted successfully.");
     }
+
+    @PutMapping("/restaurants/{restaurantId}")
+    public ResponseEntity<Restaurant> modifyRestaurantDetails(
+            @PathVariable Long restaurantId,
+            @RequestBody Restaurant restaurant
+    ) {
+        // Implementation of the method
+        Restaurant existingRestaurant = restaurantService.getRestaurantById(restaurantId);
+        if (existingRestaurant == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Update the existing restaurant details
+        existingRestaurant.setRestaurant_name(restaurant.get_restaurant_name());
+        existingRestaurant.setCuisine(restaurant.getCuisine());
+        existingRestaurant.setRating(restaurant.getRating());
+        // Update other attributes as needed
+
+        Restaurant modifiedRestaurant = restaurantService.addRestaurant(existingRestaurant);
+        return ResponseEntity.ok(modifiedRestaurant);
+    }
+
+
 }

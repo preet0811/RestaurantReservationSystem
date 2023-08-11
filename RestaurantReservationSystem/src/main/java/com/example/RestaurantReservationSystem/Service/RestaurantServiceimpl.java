@@ -54,6 +54,20 @@ public class RestaurantServiceimpl implements RestaurantService {
         restaurantRepository.deleteById(restaurantId);
     }
 
+    @Override
+    public Restaurant modifyRestaurantDetails(Long restaurantId, Restaurant modifiedRestaurant) throws RestaurantNotFoundException {
+        Restaurant existingRestaurant = restaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new RestaurantNotFoundException("Restaurant with ID " + restaurantId + " not found."));
+
+        existingRestaurant.setRestaurant_name(modifiedRestaurant.getRestaurant_name());
+        existingRestaurant.setCuisine(modifiedRestaurant.getCuisine());
+        existingRestaurant.setRating(modifiedRestaurant.getRating());
+        // Update other attributes as needed
+
+        return restaurantRepository.save(existingRestaurant);
+    }
+
+
 
 
 

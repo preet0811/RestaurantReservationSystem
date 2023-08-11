@@ -1,13 +1,16 @@
 package com.example.RestaurantReservationSystem.model;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,5 +33,10 @@ public class Restaurant {
     private boolean active = true;
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+
+    public String get_restaurant_name() {
+        return getRestaurant_name();
     }
 }
