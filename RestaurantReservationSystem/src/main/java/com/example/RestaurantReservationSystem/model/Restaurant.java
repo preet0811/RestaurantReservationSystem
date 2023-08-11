@@ -11,7 +11,7 @@ import java.util.List;
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long restaurant_id;
 
     @Column(nullable = false)
     private String restaurant_name;
@@ -23,5 +23,12 @@ public class Restaurant {
     @JoinColumn(name = "city_id", nullable = false) // Use @JoinColumn instead of @Column
     private City city;  // Many-to-One association with City entity
 
+    @Column(nullable = false)
+    private double Rating;
 
+    @Column(nullable = false)
+    private boolean active = true;
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

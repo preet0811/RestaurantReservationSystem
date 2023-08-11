@@ -1,14 +1,12 @@
 package com.example.RestaurantReservationSystem.Service;
+import com.example.RestaurantReservationSystem.exception.RestaurantNotFoundException;
 import com.example.RestaurantReservationSystem.model.Restaurant;
 import com.example.RestaurantReservationSystem.respository.RestaurantRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Component
@@ -27,8 +25,6 @@ public class RestaurantServiceimpl implements RestaurantService {
     }
 
 
-
-
     @Override
     public Restaurant addRestaurant(Restaurant restaurant) {
         return restaurantRepository.save(restaurant);
@@ -43,4 +39,24 @@ public class RestaurantServiceimpl implements RestaurantService {
     public List<Restaurant> getRestaurantsByCuisine(String cuisine) {
         return restaurantRepository.findByCuisine(cuisine);
     }
+
+    @Override
+    public void deactivateRestaurant(Long restaurantId) {
+        Restaurant restaurant = restaurantRepository.findById(restaurantId)
+                .orElseThrow();
+
+        restaurant.setActive(false);
+        restaurantRepository.save(restaurant);
+    }
+
+    @Override
+    public void deleterestaurant(Long restaurantId) {
+        restaurantRepository.deleteById(restaurantId);
+    }
+
+
+
+
 }
+
+

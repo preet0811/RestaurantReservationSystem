@@ -9,10 +9,14 @@ public interface RestaurantService {
 
 
     Restaurant getRestaurantById(Long id);
-      Restaurant addRestaurant(Restaurant restaurant);
+    Restaurant addRestaurant(Restaurant restaurant);
     List<String> getAllRestaurantNames();
     List<Restaurant> getRestaurantsByCuisine(String cuisine);
 
+    void deactivateRestaurant(Long restaurantId);
+
+    void deleterestaurant(Long restaurantId);
 
 
-  }
+
+}

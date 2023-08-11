@@ -5,6 +5,7 @@ import com.example.RestaurantReservationSystem.Service.CityService;
 import com.example.RestaurantReservationSystem.Service.RestaurantService;
 import com.example.RestaurantReservationSystem.model.City;
 import com.example.RestaurantReservationSystem.model.Restaurant;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -78,11 +79,15 @@ public class AdminController<cuisine, CuisineResponse> {
         return ResponseEntity.ok(restaurants);
     }
 
+    @DeleteMapping("restaurants/{restaurantId}")
+    public ResponseEntity<String> deactivateRestaurant(@PathVariable Long restaurantId) {
+        restaurantService.deactivateRestaurant(restaurantId);
+        return ResponseEntity.ok("Restaurant deactivated successfully.");
+    }
 
-
-
-
-
-
-
+    @DeleteMapping("restaurants/delete/{restaurantId}")
+    public ResponseEntity<String> deleteRestaurant(@PathVariable Long restaurantId) {
+        restaurantService.deleterestaurant(restaurantId);
+        return ResponseEntity.ok("Restaurant deleted successfully.");
+    }
 }
