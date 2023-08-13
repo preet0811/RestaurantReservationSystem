@@ -14,10 +14,5 @@ public class City {
     @Column(nullable = false)
     private String city_name;
 
-    public City(){}
-    public City(String name) {
-        this.city_name = name;
-    }
-
-    // Getters, setters, and constructors
+      // Getters, setters, and constructors
 }

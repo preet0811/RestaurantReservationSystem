@@ -10,22 +10,13 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Restaurant restaurant;
-
-    @Column(nullable = false)
-    private String reviewText;
-
     @Column(nullable = false)
     private int rating; // Rating out of 5 stars
 
-    public Review() {
+    public void setRestaurant(Restaurant restaurant) {
     }
 
-    // Constructor to deserialize JSON data
-    public Review(String reviewText, int rating) {
-        this.reviewText = reviewText;
-        this.rating = rating;
-    }
-    // Getters, setters, and constructors
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "review_id", nullable = false) // Use @JoinColumn instead of @Column
+//    private Restaurant restaurant;
 }

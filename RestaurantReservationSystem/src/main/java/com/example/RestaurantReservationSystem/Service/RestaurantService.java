@@ -13,17 +13,11 @@ public interface RestaurantService {
     Restaurant addRestaurant(Restaurant restaurant);
     List<String> getAllRestaurantNames();
     List<Restaurant> getRestaurantsByCuisine(String cuisine);
-
     void deactivateRestaurant(Long restaurantId);
-
     void deleterestaurant(Long restaurantId);
-
     Restaurant modifyRestaurantDetails(Long restaurantId, Restaurant modifiedRestaurant) throws RestaurantNotFoundException;
+    List<Restaurant> getRestaurantsByWaitTime(int waitTime);
 
-
-
-
-
-
+    List<Restaurant> getRestaurantsByAvailableSeats(int availableSeats);
 
 }

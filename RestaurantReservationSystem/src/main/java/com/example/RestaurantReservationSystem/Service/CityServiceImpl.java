@@ -9,23 +9,28 @@ import java.util.List;
 @Service
 
 public class CityServiceImpl implements CityService{
-    private CityRepository cityRespository;
-    public CityServiceImpl(CityRepository cityRespository){
-        this.cityRespository=cityRespository;
+    private final CityRepository cityRepository;
+    public CityServiceImpl(CityRepository cityRepository){
+        this.cityRepository = cityRepository;
+
     }
     @Override
     public List<City> getAllCities() {
-        return cityRespository.findAll();
+        return cityRepository.findAll();
     }
 
     @Override
     public City getCityById(Long id) {
-        return cityRespository.findById(id).orElse(null);
+        return cityRepository.findById(id).orElse(null);
     }
 
 
     @Override
     public City createCity(City city) {
-        return cityRespository.save(city);
+        return cityRepository.save(city);
     }
+
+
+
+
 }

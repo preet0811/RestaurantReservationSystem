@@ -1,5 +1,6 @@
 package com.example.RestaurantReservationSystem.Service;
 import com.example.RestaurantReservationSystem.exception.RestaurantNotFoundException;
+import com.example.RestaurantReservationSystem.model.City;
 import com.example.RestaurantReservationSystem.model.Restaurant;
 import com.example.RestaurantReservationSystem.respository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class RestaurantServiceimpl implements RestaurantService {
     public RestaurantServiceimpl(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
     }
+
+
 
     @Override
     public Restaurant getRestaurantById(Long id) {
@@ -61,16 +64,21 @@ public class RestaurantServiceimpl implements RestaurantService {
 
         existingRestaurant.setRestaurant_name(modifiedRestaurant.getRestaurant_name());
         existingRestaurant.setCuisine(modifiedRestaurant.getCuisine());
-        existingRestaurant.setRating(modifiedRestaurant.getRating());
         // Update other attributes as needed
 
         return restaurantRepository.save(existingRestaurant);
     }
 
+    @Override
+    public List<Restaurant> getRestaurantsByWaitTime(int waitTime) {
+        return restaurantRepository.findByWaitTimeLessThan(waitTime);
+    }
 
+    @Override
+    public List<Restaurant> getRestaurantsByAvailableSeats(int availableSeats) {
+        return restaurantRepository.findByAvailableSeatsGreaterThanEqual(availableSeats);
+    }
 
 
 
 }
-
-
