@@ -30,13 +30,15 @@ public class Restaurant {
     private double Rating;
 
     @Column(nullable = false)
+    private int waitTime;
+
+    @Column(nullable = false)
+    private int availableSeats;
+
+    @Column(nullable = false)
     private boolean active = true;
     public void setActive(boolean active) {
         this.active = active;
     }
 
-
-    public String get_restaurant_name() {
-        return getRestaurant_name();
-    }
 }

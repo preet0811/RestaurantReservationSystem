@@ -20,7 +20,9 @@ public interface RestaurantService {
 
     Restaurant modifyRestaurantDetails(Long restaurantId, Restaurant modifiedRestaurant) throws RestaurantNotFoundException;
 
+    List<Restaurant> getRestaurantsByWaitTime(int waitTime);
 
+    List<Restaurant> getRestaurantsByAvailableSeats(int availableSeats);
 
 
 

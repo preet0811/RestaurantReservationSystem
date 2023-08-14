@@ -66,11 +66,19 @@ public class RestaurantServiceimpl implements RestaurantService {
 
         return restaurantRepository.save(existingRestaurant);
     }
+    @Override
+    public List<Restaurant> getRestaurantsByWaitTime(int waitTime) {
+        return restaurantRepository.findByWaitTimeLessThan(waitTime);
+    }
+
+    @Override
+    public List<Restaurant> getRestaurantsByAvailableSeats(int availableSeats) {
+        return restaurantRepository.findByAvailableSeatsGreaterThanEqual(availableSeats);
+    }
+
 
 
 
 
 
 }
-
-

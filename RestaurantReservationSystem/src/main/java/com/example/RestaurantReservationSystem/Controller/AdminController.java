@@ -105,9 +105,11 @@ public class AdminController<cuisine, CuisineResponse> {
         }
 
         // Update the existing restaurant details
-        existingRestaurant.setRestaurant_name(restaurant.get_restaurant_name());
+        existingRestaurant.setRestaurant_name(restaurant.getRestaurant_name());
         existingRestaurant.setCuisine(restaurant.getCuisine());
         existingRestaurant.setRating(restaurant.getRating());
+        existingRestaurant.setAvailableSeats(restaurant.getAvailableSeats());
+        existingRestaurant.setWaitTime(restaurant.getWaitTime());
         // Update other attributes as needed
 
         Restaurant modifiedRestaurant = restaurantService.addRestaurant(existingRestaurant);
